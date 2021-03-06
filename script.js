@@ -188,11 +188,12 @@ var left_value_arr = [];
 
 function left_val_init() {
     //console.log("yse");
-    let cur_pos = -10;
+    let cur_pos = 0;
     left_value_arr = [];
     for(let i = 0; i < numCloud_const; i++) {
         //console.log(cur_pos, left_value_arr);
         left_value_arr.push(cur_pos + randomBetween(-5, 5));
+        console.log(left_value_arr);
         cur_pos += 240 / (numCloud_const-1);
     }
 }

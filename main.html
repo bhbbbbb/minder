@@ -53,8 +53,10 @@
                 <img v-for="style in dayCloudArr" src="image/cloud.png" :style="style"></img>
             </div>
             
-            <img src="image/ground_2.png" id="ground"></img>
-            
+            <div>
+                <img src="image/dark_ground.png" class="ground" id="night_ground" :style="NightBgStyle"></img>
+                <img src="image/ground.png" class="ground" id="day_ground" :style="DayBgStyle"/>
+            </div> 
 
             <div id="character_frame">
                 <div id="character">
@@ -63,6 +65,10 @@
                     <img :src="SpotImage" id="spot" @mouseover="HoverOnSpot()" @mouseleave="LeaveSpot()"
                      @click="ClickSpot()" :style="SpotStyle"></img>
                 </div>
+            </div>
+
+            <div id="text_box" :style="DayBgStyle">
+                <span>踏上新旅程前<br/>先從了解自己開始</span>
             </div>
         </div>
 

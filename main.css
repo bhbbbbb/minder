@@ -151,11 +151,21 @@ a.oval:hover {
     /* filter: opacity(0.1); */
 }
 
-#ground {
+.ground {
     position: absolute;
     bottom: 0;
     left: 0em;
     width:102%;
+}
+
+#night_ground {
+    /* filter: */
+    z-index: -5;
+}
+
+#day_ground {
+    /* filter: opacity(0); */
+    z-index: -6
 }
 
 #character_frame {
@@ -194,4 +204,11 @@ a.oval:hover {
     /* bottom:7em; */
     /* left:2.2em; */
     z-index: 100;
+}
+
+#text_box {
+    position:absolute;
+    right:10em;
+    bottom:10em;
+    color: #000000;
 }
