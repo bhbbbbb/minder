@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Minder</title>
+    <link rel="icon" type="image/png" size="192x192"
+    href="./image/leaf_icon_with_white_bg.png"></link>
+    
+	<link href="./main.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue"></script>
+    
+</head>
+
+
+
+<body>
+    <div id="home">
+        <div id="top_bar_frame">
+            <div id="top_bar">
+                <div id="bar_left">
+                    <a href="https://google.com">
+                        <img src="./image/leaf_icon_with_white_bg.png" id="icon" class="top_bar_ele">
+                        <span class="top_bar_ele">MINDER</span>
+                    </a>
+                </div>
+            
+                <ul class="right">
+                    <li><a href="https://google.com" class="top_bar_ele_left">關於</a></li>
+                    <li><a href="https://google.com" class="top_bar_ele_left">公司</a></li>
+                    
+                    <li><a href="https://google.com" class="top_bar_ele oval">註冊</a></li>
+
+                    <li><a href="https://google.com" class="top_bar_ele oval">登入</a></li>
+                    <div id="clear"></div>
+                </ul>    
+            </div>
+        </div>
+        
+        
+
+        <div id="scene">
+            <div id="rain_bg"><img src="./image/rain.gif" :style="RainBgStyle"/></div>
+            <div id="night_bg"><img src="./image/night_sky.png" :style="NightBgStyle"/></div>
+            <div id="day_bg"><img src="./image/day_sky.png" id="day_bg" :style="DayBgStyle"/></div>
+            
+            
+            <div id="clouds" width="100%" :style="RainBgStyle">
+                <img v-for="style in cloudStyleArr" src="image/cloud.png" :style="style"></img>
+            </div>
+
+            <div id="day_clouds" width="100%" :style="DayBgStyle">
+                <img v-for="style in dayCloudArr" src="image/cloud.png" :style="style"></img>
+            </div>
+            
+            <img src="image/ground_2.png" id="ground"></img>
+            
+
+            <div id="character_frame">
+                <div id="character">
+                    <img src="image/man.png" id="man"></img>
+                    <img src="image/umbrella.png" id="umbrella" :style="UmbrellaFade"></img>
+                    <img :src="SpotImage" id="spot" @mouseover="HoverOnSpot()" @mouseleave="LeaveSpot()"
+                     @click="ClickSpot()" :style="SpotStyle"></img>
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<script src="./script.js"></script>
+	
+
+</body>
+
+</html>

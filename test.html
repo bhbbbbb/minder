@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Instance</title>
+    <link rel="icon" type="image/png" size="192x192"
+    href="https://stickershop.line-scdn.net/stickershop/v1/sticker/41219/android/sticker.png;compress=true"></link>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        html{
+            background:#1E1E1E;
+            color:#E7E7E7;
+        }
+        html,
+        body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        user-select: none;
+        }
+        div{
+            font-size:18pt;
+            font-family:Arial;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- will create check box list dynamicly depand on the length of opthionList -->
+        <div>
+            <span> Add Spot here : {{spotName}} </span><br/>
+            <input type="text" v-model="spotName" @keydown.enter="AddSpot"></input>
+        </div>
+        <form>
+            <br/>
+            <div v-for="opt in optionList">
+                <input type="checkbox" :id="opt.id" :value="opt.id" v-model="checkBoxes"></input>
+                <label :for="opt.id">{{opt.name}}</label>
+                <br/>
+            </div>
+
+        </form>
+
+        <span>You have selected {{checkBoxes.length == 0 ? "nothing" : checkBoxes.join(", ")}}</span>
+      </div>
+    <div>
+        <img src="https://stickershop.line-scdn.net/stickershop/v1/sticker/41230/android/sticker.png;compress=true"></img>
+    </div>
+    <!-- <script src="./script.js"></script> -->
+
+    <script>
+        let vm = new Vue({
+            el:"#app",
+            data : {
+                option:0,
+
+                checkBoxes:[],
+
+                //initialzie option list with json or anything available
+                optionList : [{id:0, name:"Name1"}, {id:1, name:"Name2"}, {id:2, name:"Name3"}],// this is just an example
+
+                spotName : "",
+            },
+            
+            computed: {
+                
+            },
+
+            methods: {
+                AddSpot() {
+                    
+                    if(this.spotName)
+                        this.optionList.push({id:this.optionList.length, name:this.spotName});
+
+                    this.spotName = "";
+                }
+            },
+        });
+    </script>
+</body>
+</html>
