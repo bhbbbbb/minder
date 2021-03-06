@@ -54,7 +54,7 @@ ul li {
     position: relative;
     /* position: fixed; */
     z-index: 3;
-    /* line-height: 2em; */
+    line-height: 2em;
 }
 
 #scene {
@@ -89,6 +89,7 @@ ul li {
     position: absolute;
     left: 0;
     top: 0;
+    width: 100%;
     z-index: -8;
 }
 
@@ -209,7 +210,7 @@ a.oval:hover {
 #umbrella {
     position: absolute;
     width:60%;
-    bottom:9.2em;
+    bottom:8.6em;
     left:-2.1em;
 }
 

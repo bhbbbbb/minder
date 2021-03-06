@@ -85,7 +85,7 @@ let vm = new Vue({
 
         setTimer() {
             this.timer_spot = setInterval(this.ChangeSpotImage, 1000);
-            this.timer_cloud = setInterval(this.GetRandomStyle, 5000);
+            //this.timer_cloud = setInterval(this.GetRandomStyle, 5000);
         },
 
         HoverOnSpot() {
@@ -142,6 +142,7 @@ let vm = new Vue({
 
         RainBgStyle() {
             return {
+                width: "100%",
                 filter: "opacity(" + String(1 - this.time/100) + ")"
             }
         },
