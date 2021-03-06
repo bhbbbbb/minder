@@ -2,6 +2,8 @@ var zOrder = -1;
 var lva_idx = 0;
 var cloud_style_idx = 0;
 var numCloud_const = 10;
+const delay = 5;
+
 //var spot_idx = 2;
 //var spot_pos_y = 7;
 let vm = new Vue({
@@ -39,6 +41,7 @@ let vm = new Vue({
         GetRandomStyle() {
             zOrder = -1;
             this.cloudStyleArr = [];
+            this.dayCloudArr = [];
             let tem;
             for(let i = 0; i < numCloud_const; i++) {
                  
@@ -100,25 +103,25 @@ let vm = new Vue({
                 this.is_raining = false;
                 clearInterval(this.timer_spot);
                 clearInterval(this.timer_cloud);
-                this.spot_idx = 7;
+                
                 let height_count = 0;
                 this.spot_idx = 1;
                 this.timer_spot_move = setInterval(() => {
-                    this.spot_pos_y += 0.28
-                    height_count++;
-                    if(height_count%10 == 0) {
+                    this.spot_pos_y += 0.28 * delay
+                    height_count += delay;
+                    if(height_count % Math.floor(10/delay) == 0) {
                         this.time++;
                     }
-                    //console.log(height_count);
-                    this.spot_size += 0.14;
-                    this.spot_pos_x -= 0.07;
+                    //console.log(height_count, this.time);
+                    this.spot_size += 0.14 * delay;
+                    this.spot_pos_x -= 0.07 * delay;
                     
                     if(height_count > 1000) {
                         clearInterval(this.timer_spot_move);
                         //this.GetRandomStyle();
                         this.timer_cloud = setInterval(this.GetRandomStyle, 5000)
                     }
-                }, 1);
+                }, delay);
             }
         }
 
