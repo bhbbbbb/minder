@@ -45,6 +45,7 @@
         <div id="scene_frame">
             <div id="scene" class="clear">
                 <img src="./image/rain.gif" v-if="time<100" id="rain_bg" :style="RainBgStyle"/>
+                <!-- <source src="./image/rain.mp4" type="video/mp4" v-if="time<100" id="rain_bg" :style="RainBgStyle"/> -->
                 <img src="./image/night_sky.png" v-if="time<100" id="night_bg" :style="NightBgStyle"/>
                 <img src="./image/day_sky.png" v-if="time>0" id="day_bg" :style="DayBgStyle"/>
                 
