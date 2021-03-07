@@ -2,7 +2,7 @@ var zOrder = -1;
 var lva_idx = 0;
 var cloud_style_idx = 0;
 var numCloud_const = 10;
-const delay = 5;
+const delay = 20;
 
 //var spot_idx = 2;
 //var spot_pos_y = 7;
@@ -47,7 +47,7 @@ let vm = new Vue({
                     position: "absolute",
                     "z-index": zOrder--,
                     top: String(randomBetween(-6,8)) + "em",
-                    left: String(left_value_arr[lva_idx++]) + "em",
+                    left: String(left_value_arr[lva_idx]) + "em",
                     transform: "rotate(" + String(Math.round(randomBetween(0, 1))*180) + "deg)",
                 };
                 this.cloudStyleArr.push(tem);
@@ -58,11 +58,12 @@ let vm = new Vue({
                     position: "absolute",
                     "z-index": zOrder--,
                     top: String(randomBetween(-6,12)) + "em",
-                    left: String(left_value_arr[lva_idx++]) + "em",
+                    left: String(left_value_arr[lva_idx]) + "em",
                     transform: "rotate(" + String(Math.round(randomBetween(0, 1))*180) + "deg)",
                 };
                 
                 this.dayCloudArr.push(tem);
+                lva_idx++;
             }
             //console.log(this.cloudStyleArr);
             //console.log(zOrder);
@@ -105,9 +106,8 @@ let vm = new Vue({
                 this.timer_spot_move = setInterval(() => {
                     this.spot_pos_y += 0.28 * delay
                     height_count += delay;
-                    if(height_count % Math.floor(10/delay) == 0) {
-                        this.time++;
-                    }
+                    
+                    this.time += delay/10
                     //console.log(height_count, this.time);
                     this.spot_size += 0.14 * delay;
                     this.spot_pos_x -= 0.07 * delay;
