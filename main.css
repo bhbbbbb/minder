@@ -207,7 +207,7 @@ a.oval:hover {
     position: absolute;
     left:50%;
     right:50%;
-    
+    transform: translateX(-50%);
     bottom: 1em;
     width:8.4rem;
     height:320px;
