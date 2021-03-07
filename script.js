@@ -19,10 +19,6 @@ let vm = new Vue({
         //     top: "3em", //-10~3
         //     "z-index": "-1"
         // },
-
-        testStyle: {
-            fontSize: "90px"
-        },
         spot_idx: 2,
         spot_pos_x: 76,
         spot_pos_y: 260,
@@ -33,7 +29,7 @@ let vm = new Vue({
         timer_spot_move: "",
         cloudStyleArr: [],
         dayCloudArr: [],
-        time: 0, // 0 is night, 1000 is completely day
+        time: 0, // 0 is night, 100 is completely day
         is_raining: true,
     },
 

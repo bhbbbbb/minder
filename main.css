@@ -139,6 +139,8 @@ a:hover {
     width: 50%;
     float: left;
     position:relative;
+    /* display: flex;
+    align-items: center; */
 }
 
 
@@ -186,7 +188,7 @@ a.oval:hover {
 
 #character_frame {
     position: absolute;
-    left:47%;
+    left:27em;
     bottom: 1em;
     width:320px;
     height:320px;

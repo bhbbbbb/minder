@@ -42,16 +42,16 @@
         
 
         <div id="scene">
-            <div id="rain_bg"><img src="./image/rain.gif" :style="RainBgStyle"/></div>
+            <!-- <div id="rain_bg"><img src="./image/rain.gif" :style="RainBgStyle"/></div> -->
             <div id="night_bg"><img src="./image/night_sky.png" :style="NightBgStyle"/></div>
             <div id="day_bg"><img src="./image/day_sky.png" id="day_bg" :style="DayBgStyle"/></div>
             
             
-            <div id="clouds" width="100%" :style="RainBgStyle">
+            <div id="clouds" v-if="time<100" width="100%" :style="RainBgStyle">
                 <img v-for="style in cloudStyleArr" src="image/cloud.png" :style="style"></img>
             </div>
 
-            <div id="day_clouds" width="100%" :style="DayBgStyle">
+            <div v-if="!is_raining" id="day_clouds" width="100%" :style="DayBgStyle">
                 <img v-for="style in dayCloudArr" src="image/cloud.png" :style="style"></img>
             </div>
             
