@@ -33,44 +33,47 @@
                         <li><a href="https://google.com" class="top_bar_ele oval">註冊</a></li>
 
                         <li><a href="https://google.com" class="top_bar_ele oval">登入</a></li>
-                        <div id="clear"></div>
+                        <li class="clear"></li>
                     </ul>
                 </div>
+
+                <div class="clear"></div>
             </div>
         </div>
         
         
-
-        <div id="scene">
-            <!-- <div id="rain_bg"><img src="./image/rain.gif" :style="RainBgStyle"/></div> -->
-            <div id="night_bg"><img src="./image/night_sky.png" :style="NightBgStyle"/></div>
-            <div id="day_bg"><img src="./image/day_sky.png" id="day_bg" :style="DayBgStyle"/></div>
-            
-            
-            <div id="clouds" v-if="time<100" width="100%" :style="RainBgStyle">
-                <img v-for="style in cloudStyleArr" src="image/cloud.png" :style="style"></img>
-            </div>
-
-            <div v-if="!is_raining" id="day_clouds" width="100%" :style="DayBgStyle">
-                <img v-for="style in dayCloudArr" src="image/cloud.png" :style="style"></img>
-            </div>
-            
-            <div>
-                <img src="image/dark_ground.png" class="ground" id="night_ground" :style="NightBgStyle"></img>
-                <img src="image/ground.png" class="ground" id="day_ground" :style="DayBgStyle"/>
-            </div> 
-
-            <div id="character_frame">
-                <div id="character">
-                    <img src="image/man.png" id="man"></img>
-                    <img src="image/umbrella.png" id="umbrella" :style="UmbrellaFade"></img>
-                    <img :src="SpotImage" id="spot" @mouseover="HoverOnSpot()" @mouseleave="LeaveSpot()"
-                     @click="ClickSpot()" :style="SpotStyle"></img>
+        <div id="scene_frame">
+            <div id="scene" class="clear">
+                <img src="./image/rain.gif" v-if="time<100" id="rain_bg" :style="RainBgStyle"/>
+                <img src="./image/night_sky.png" v-if="time<100" id="night_bg" :style="NightBgStyle"/>
+                <img src="./image/day_sky.png" v-if="time>0" id="day_bg" :style="DayBgStyle"/>
+                
+                
+                <div id="clouds" v-if="time<100" width="100%" :style="RainBgStyle">
+                    <img v-for="style in cloudStyleArr" src="image/cloud.png" :style="style"></img>
                 </div>
-            </div>
 
-            <div id="text_box" :style="DayBgStyle">
-                <span>踏上新旅程前<br/>先從了解自己開始</span>
+                <div v-if="!is_raining" id="day_clouds" width="100%" :style="DayBgStyle">
+                    <img v-for="style in dayCloudArr" src="image/cloud.png" :style="style"></img>
+                </div>
+                
+                <div>
+                    <img src="image/dark_ground.png" class="ground" id="night_ground" :style="NightBgStyle"></img>
+                    <img src="image/ground.png" class="ground" id="day_ground" :style="DayBgStyle"/>
+                </div> 
+
+                <div id="character_frame">
+                    <div id="character">
+                        <img src="image/man.png" id="man"></img>
+                        <img src="image/umbrella.png" id="umbrella" :style="UmbrellaFade"></img>
+                        <img :src="SpotImage" id="spot" @mouseover="HoverOnSpot()" @mouseleave="LeaveSpot()"
+                        @click="ClickSpot()" :style="SpotStyle"></img>
+                    </div>
+                </div>
+
+                <div id="text_box" :style="DayBgStyle">
+                    <span>踏上新旅程前<br/>先從了解自己開始</span>
+                </div>
             </div>
         </div>
 
