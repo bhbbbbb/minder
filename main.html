@@ -10,6 +10,7 @@
     
 	<link href="./main.css" rel="stylesheet">
     <script src="https://unpkg.com/vue"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     
 </head>
 
@@ -45,35 +46,38 @@
         
         <div id="scene_frame">
             <div id="scene" class="clear">
-                <img src="./image/rain.gif" v-if="time<100" id="rain_bg" :style="RainBgStyle"/>
+                <img src="./image/rain.gif" v-if="1" id="rain_bg" class="night"/>
                 <!-- <source src="./image/rain.mp4" type="video/mp4" v-if="time<100" id="rain_bg" :style="RainBgStyle"/> -->
-                <img src="./image/night_sky.png" v-if="time<100" id="night_bg" :style="NightBgStyle"/>
-                <img src="./image/day_sky.png" v-if="time>0" id="day_bg" :style="DayBgStyle"/>
+                <img src="./image/night_sky.png" v-if="1" id="night_bg" class="night"/>
+                <img src="./image/day_sky.png" v-if="!is_raining" id="day_bg"/>
                 
                 
-                <div id="clouds" v-if="time<100" width="100%" :style="RainBgStyle">
-                    <img v-for="style in cloudStyleArr" src="image/cloud.png" :style="style"></img>
+                <div class="clouds night" v-if="1">
+                    <img v-for="(style, idx) in cloudStyleArr" src="image/cloud.png" :style="style" class="cloud" :id="idx"></img>
                 </div>
 
-                <div v-if="!is_raining" id="day_clouds" width="100%" :style="DayBgStyle">
+                <div class="clouds day">
                     <img v-for="style in dayCloudArr" src="image/cloud.png" :style="style"></img>
                 </div>
                 
                 <div>
-                    <img src="image/dark_ground.png" class="ground" id="night_ground" :style="NightBgStyle"></img>
-                    <img src="image/ground.png" class="ground" id="day_ground" :style="DayBgStyle"/>
+                    <img src="image/dark_ground.png" class="ground night" id="night_ground"></img>
+                    <img src="image/ground.png" class="ground" id="day_ground"/>
                 </div> 
 
                 <div id="character_frame">
-                    <div id="character">
-                        <img src="image/man.png" id="man"></img>
-                        <img src="image/umbrella.png" id="umbrella" :style="UmbrellaFade"></img>
-                        <img :src="SpotImage" id="spot" @mouseover="HoverOnSpot()" @mouseleave="LeaveSpot()"
-                        @click="ClickSpot()" :style="SpotStyle"></img>
-                    </div>
+                        <div id="character">
+                            <!-- <img src="image/man2.png" id="man"/> -->
+                            <div id="man"></div>
+                            <div id="umbrella" class="night"></div>
+                            <!-- <img src="image/umbrella_2.png" id="umbrella"/> -->
+                            <img :src="SpotImage" id="spot" @mouseover="HoverOnSpot()" @mouseleave="LeaveSpot()"
+                            @click="ClickSpot()" ></img>
+                        </div>
+                    
                 </div>
 
-                <div id="text_box" :style="DayBgStyle">
+                <div id="text_box" class="day">
                     <span>踏上新旅程前<br/>先從了解自己開始</span>
                 </div>
             </div>
