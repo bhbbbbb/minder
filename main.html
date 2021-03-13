@@ -27,7 +27,7 @@
                     </a>
                 </div>
                 
-                <div id="bar_right">
+                <div id="bar_right" v-if="RightDisplay">
                     <ul id="right">
                         <li><a href="https://google.com" class="top_bar_ele_left">關於</a></li>
                         <li><a href="https://google.com" class="top_bar_ele_left">公司</a></li>
@@ -65,14 +65,14 @@
                     <img src="image/ground.png" class="ground" id="day_ground"/>
                 </div> 
 
-                <div id="character_frame">
+                <div id="character_frame" :style="ManSize">
                         <div id="character">
                             <!-- <img src="image/man2.png" id="man"/> -->
                             <div id="man"></div>
                             <div id="umbrella" class="night"></div>
                             <!-- <img src="image/umbrella_2.png" id="umbrella"/> -->
                             <img :src="SpotImage" id="spot" @mouseover="HoverOnSpot()" @mouseleave="LeaveSpot()"
-                            @click="ClickSpot()" ></img>
+                            @click="ClickSpot()" :style="SpotStyle"></img>
                         </div>
                     
                 </div>

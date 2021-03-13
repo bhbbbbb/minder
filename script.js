@@ -5,6 +5,10 @@ var numCloud_const = 12;
 const delay = 20;
 var left_value_arr = [];
 var first_in = 0;
+const manSize_base = {
+    width: 5.1643,
+    height: 9.88214
+}
 //var spot_idx = 2;
 //var spot_pos_y = 7;
 let vm = new Vue({
@@ -21,17 +25,22 @@ let vm = new Vue({
         //     "z-index": "-1"
         // },
         spot_idx: 2,
-        spot_pos_x: 76,
-        spot_pos_y: 260,
-        spot_size:61,
+        spotSize: 1.5,
+        spotPosX: 2.9,
+        spotPosY: 4.5,
         //spotImage: "./image/spot_2.png",
         timer_spot: "",
         timer_cloud: "",
-        timer_spot_move: "",
+        // timer_spot_move: "",
         cloudStyleArr: [],
         dayCloudArr: [],
-        time: 0, // 0 is night, 100 is completely day
+        // time: 0, // 0 is night, 100 is completely day
         is_raining: true,
+        RightDisplay: true,
+        manSize: {
+            width: "5.1643em",
+            height: "9.88214em"
+        }
         
     },
 
@@ -125,16 +134,17 @@ let vm = new Vue({
             clearInterval(this.timer_cloud);
             sky_height = $("#scene").height();
             character_height = $("#character").height();
-            spot_dest_height = sky_height - character_height * 0.62;
+            spot_dest_height = (sky_height - character_height) * 1.2;
+            //console.log(spot_dest_height);
             spot_width = $("#spot").width();
             spot_max_width = spot_dest_height / 590 * 4.5;
             if (spot_max_width < 2) spot_max_width = 2;
-            left_shift = (spot_max_width - 1.5) / 2;
+            left_shift = (spot_max_width - this.spotSize) / 2;
             // console.log(spot_max_width, left_shift);
             $("#spot").animate({
                 "bottom": String(spot_dest_height) + "px", 
                 "width": String(spot_max_width) + "em",
-                "left" : String(2.9 - left_shift) + "em"
+                "left" : String(this.spotPosX - left_shift) + "em"
             }, 1500);
             
             scene_width = $("#scene").width();
@@ -174,7 +184,9 @@ let vm = new Vue({
 
             $(".night").fadeOut(1500);
             wi = $("#text_box").width();
-            console.log(wi);
+            //console.log(wi);
+            $("#text_box").css("font-size", String(scene_width/1920) + "rem");
+            console.log($("#text_box").css("font-size"));
             $("#text_box").animate({
                 right: String((scene_width/2-wi)/2) + "px",
                 opacity: 1,
@@ -210,6 +222,29 @@ let vm = new Vue({
             //         }
             //     }, delay);
             // }
+        },
+
+        rescale() {
+            win_width = $(window).width();
+            scene_height = $("#scene").height();
+            man_resize = scene_height/862;
+            this.manSize = {
+                width: String(manSize_base.width*man_resize) + "em",
+                height: String(manSize_base.height*man_resize) + "em"
+            };
+        
+            this.spotSize = 1.5 * man_resize;
+            this.spotPosX = 2.9 * man_resize;
+            this.spotPosY = 4.5 * man_resize;
+            
+            if(win_width < 960) this.RightDisplay = false;
+            else this.RightDisplay = true;
+            // console.log(win_width, this.RightDisplay); 
+            // $("#spot").css({
+            //     "width": String(1.5 * man_resize) + "em",
+            //     "bottom": String(4.5 * man_resize) + "em",
+            //     "left": String(2.9 * man_resize) + "em"
+            // });
         }
 
     },
@@ -227,48 +262,50 @@ let vm = new Vue({
         //     }
         // },
 
-        RainBgStyle() {
-            return {
-                width: "100%",
-                filter: "opacity(" + String(1 - this.time/100) + ")"
-            }
+        // RainBgStyle() {
+        //     return {
+        //         width: "100%",
+        //         filter: "opacity(" + String(1 - this.time/100) + ")"
+        //     }
+        // },
+
+        // NightBgStyle() {
+        //     return {
+        //         filter: "opacity(" + String(1 - this.time/100) + ")"
+        //     }
+        // // },
+
+        // DayBgStyle() {
+        //     return {
+        //         filter: "opacity(" + String(this.time/100) + ")"
+        //     }
+        // },
+
+        ManSize() {
+            //console.log(this.manSize);
+            return this.manSize;
         },
 
-        NightBgStyle() {
+        SpotStyle() {
             return {
-                filter: "opacity(" + String(1 - this.time/100) + ")"
+                width: String(this.spotSize) + "em",
+                left: String(this.spotPosX) + "em",
+                bottom: String(this.spotPosY) + "em"
             }
-        },
-
-        DayBgStyle() {
-            return {
-                filter: "opacity(" + String(this.time/100) + ")"
-            }
-        },
-
-        UmbrellaFade() {
-            return {
-                filter: "opacity(" + String(1 - this.time/70 < 0 ? 0 : 1 - this.time/70) + ")"
-            }
-        },
-
-        CloudFade() {
-            return {
-                filter: "opacity(" + String(1 - this.time/70 < 0 ? 0 : 1 - this.time/70) + ")"
-            }
-        },
-
-        
+        }
     }, 
 
     created() {
         left_val_init();
         this.GetRandomStyle();
         this.setTimer();
+        
+        
     },
 
     mounted() {
-        
+        this.rescale();
+        $(window).resize(this.rescale);
     },
 
     beforeMount() {
